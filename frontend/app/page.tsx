@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { BarChart3, Lock, Search, Download, TrendingUp, Home, DollarSign } from "lucide-react";
 
+const API_URL = "https://economic-intelligence-platform.onrender.com";
+
 export default function EconomicDashboard() {
   // --- AUTH STATES ---
   const [token, setToken] = useState<string | null>(null);
@@ -25,7 +27,8 @@ export default function EconomicDashboard() {
       formData.append("username", username);
       formData.append("password", password);
 
-      const res = await fetch("http://localhost:8000/token", {
+      // LOCAL const res = await fetch("http://localhost:8000/token", {
+      const res = await fetch(`${API_URL}/token`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData,
@@ -48,7 +51,8 @@ export default function EconomicDashboard() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/forecast", {
+      // LOCAL const res = await fetch("http://localhost:8000/api/forecast", {
+      const res = await fetch(`${API_URL}/api/forecast`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
